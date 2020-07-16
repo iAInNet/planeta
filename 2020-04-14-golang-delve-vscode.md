@@ -27,7 +27,7 @@ Delve 是 go 语言的调试工具，允许我们给程序添加断点，查看�
 使用 go get 安装 delve
 `go get -u github.com/go-delve/delve/cmd/dlv`
 
-### 子命令（常用）<a id="sec-1-1-2" name="sec-1-1-2"></a>
+### 子命令（常用）
 
 #### attach
 
@@ -139,20 +139,20 @@ Delve 是 go 语言的调试工具，允许我们给程序添加断点，查看�
 在 debug 面板，点击创建 launch.json 。会在当前工程 .vscode 目录下，生成 launch.json 文件。默认内容如下：
 
 ```json
+{
+  "version": "0.2.0",
+  "configurations": [
     {
-      "version": "0.2.0",
-      "configurations": [
-        {
-          "name": "Launch",
-          "type": "go",
-          "request": "launch",
-          "mode": "auto",
-          "program": "${fileDirname}",
-          "env": {},
-          "args": []
-        }
-      ]
+      "name": "Launch",
+      "type": "go",
+      "request": "launch",
+      "mode": "auto",
+      "program": "${fileDirname}",
+      "env": {},
+      "args": []
     }
+  ]
+}
 ```
 
 #### 参数说明
@@ -177,13 +177,13 @@ Delve 是 go 语言的调试工具，允许我们给程序添加断点，查看�
 
 ```json
 {
-    "name": "Launch Test",
-    "type": "go",
-    "request": "launch",
-    "mode": "test",
-    "program": "${fileDirname}",
-    "env": {},
-    "args": []
+  "name": "Launch Test",
+  "type": "go",
+  "request": "launch",
+  "mode": "test",
+  "program": "${fileDirname}",
+  "env": {},
+  "args": []
 }
 ```
 
@@ -197,11 +197,11 @@ ${fileDirname} ： 当前打开文件所在目录。
 
 ```json
 {
-    "name": "Attach to Process",
-    "type": "go",
-    "request": "attach",
-    "mode": "local",
-    "processId": 0
+  "name": "Attach to Process",
+  "type": "go",
+  "request": "attach",
+  "mode": "local",
+  "processId": 0
 }
 ```
 
@@ -213,14 +213,14 @@ processId ： 传入当前正在运行的进程号，关联上去。
 
 ```json
 {
-    "name": "Launch Exec",
-    "type": "go",
-    "request": "launch",
-    "mode": "exec",
-    "program": "${workspaceFolder}/path/to/binaryfile",
-    "env": {},
-    "args": ["-c", "/path/to/file", "-a", "command"],
-    "showLog": true
+  "name": "Launch Exec",
+  "type": "go",
+  "request": "launch",
+  "mode": "exec",
+  "program": "${workspaceFolder}/path/to/binaryfile",
+  "env": {},
+  "args": ["-c", "/path/to/file", "-a", "command"],
+  "showLog": true
 }
 ```
 
@@ -234,7 +234,7 @@ args ： 该命令执行的时候需要传入的命令行参数。
 
 VSCode 启动 debug 会出现6个按钮，对应6个重要的操作。
 
-![img](https://raw.githubusercontent.com/iAInNet/planet/master/assets/images/20200329_delve_vscode_1.png)
+![img](http://gofile.me/4NhEb/6pNsg3cCx)
 
 Play/Pause 按键： 相当于 dlv 中 continue 指令。跳出当前断点，执行代码，直到下一个断点停住。  
 Forward 按键： 相当于 dlv 中的 next 指令。执行下一行，程序继续。  
@@ -243,7 +243,7 @@ Down 按键：  相当于 dlv 中的 stepout 指令。跳出当前函数，回�
 Replay 按键： 相当于 dlv 中 restart 指令。 跳出所有断点，让程序从头开始执行。  
 Stop 按键： 终止进程；如果是 attach 就是断开连接。  
 
-## VSCode Debug 全局配置<a id="sec-1-3" name="sec-1-3"></a>
+## VSCode Debug 全局配置
 
 在 settings.json 配置文件中，也有一些比较关键配置，能方便调试使用。比如增大字符串展示的长度。
 
@@ -257,7 +257,7 @@ Stop 按键： 终止进程；如果是 attach 就是断开连接。
 
 maxStringLen: 展示字符串的最大字节数。这个是比较常用的，避免出现错误信息显示不完全。
 
-## 参考资料<a id="sec-1-4" name="sec-1-4"></a>
+## 参考资料
 
 [github地址](https://github.com/go-delve/delve)
 
