@@ -234,7 +234,7 @@ args ： 该命令执行的时候需要传入的命令行参数。
 
 VSCode 启动 debug 会出现6个按钮，对应6个重要的操作。
 
-![img](http://gofile.me/4NhEb/6pNsg3cCx)
+![img](https://raw.githubusercontent.com/iAInNet/planeta/master/pics/golang_delve_vscode_1.png)
 
 Play/Pause 按键： 相当于 dlv 中 continue 指令。跳出当前断点，执行代码，直到下一个断点停住。  
 Forward 按键： 相当于 dlv 中的 next 指令。执行下一行，程序继续。  
