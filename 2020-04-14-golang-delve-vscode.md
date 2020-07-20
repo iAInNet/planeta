@@ -5,7 +5,7 @@ author: iainnet
 title: Golang Delve 调试工具和 VSCode 配置
 ---
 
-[[blog]] [[golang]] [[vscode]]
+[[golang]] [[vscode]]
 
 ## 介绍 Delve
 
@@ -16,17 +16,21 @@ Delve 是 go 语言的调试工具，允许我们给程序添加断点，查看�
 #### macOS
 
 首先确保编译工具已经安装
+
 `xcode-select --install`
 
 使用 go get 安装 delve
+
 `go get -u github.com/go-delve/delve/cmd/dlv`
 
 开发者模式，可以避免每次都要输入密码来授权 delve
+
 `sudo /usr/sbin/DevToolsSecurity -enable`
 
 #### Linux
 
 使用 go get 安装 delve
+
 `go get -u github.com/go-delve/delve/cmd/dlv`
 
 ### 子命令（常用）
