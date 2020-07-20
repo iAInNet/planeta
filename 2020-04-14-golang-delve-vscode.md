@@ -2,9 +2,9 @@
 layout: post
 date: 2020-04-14 01:00:00
 author: iainnet
+title: Golang Delve 调试工具和 VSCode 配置
+tags: [[blog]] [[golang]] [[vscode]]
 ---
-
-# Golang Delve 调试工具和 VSCode 配置
 
 ## 介绍 Delve
 
@@ -54,8 +54,9 @@ Delve 是 go 语言的调试工具，允许我们给程序添加断点，查看�
 
 如果是自己预先编译的话，注意带上编译参数：
 
-+ go 1.10及其以上， -gcflags="all=-N -l"
-+ go 1.10以前版本， -gcflags="-N -l"
+go 1.10及其以上， -gcflags="all=-N -l"
+
+go 1.10以前版本， -gcflags="-N -l"
 
 这样才能禁用 optimizations（优化）功能。
 
@@ -135,6 +136,26 @@ Delve 是 go 语言的调试工具，允许我们给程序添加断点，查看�
 
 ### 配置
 
+#### 配置参数
+
+```yaml
+name: 名称，显示在 launch configuration 下拉面板
+type: go
+request: launch 、attach 两种。
+  launch: 是直接加载启动二进制文件或者执行文件
+  attach: 是挂钩一个正在运行的进程
+mode: auto 、debug 、remote 、test 、exec 五种。
+  auto: 是自动识别，判断到底是执行二进制文件，是直接执行文件，还是挂钩到正在运行进程id，
+  debug: 等同于 dlv debug 。program字段要传入目录或者文件，会自动编译，然后启动一个 debug session 。
+  remote: 等同于 dlv connect 。
+  test: 等同于 dlv test 。program字段传入目录（test所在目录），然后启动一个 debug session 。
+  exec: 等同于 dlv exec 。program字段传入已经编译好的可执行文件，然后启动一个 debug session 。
+program: 不同 mode 下传入不同的数值。
+env: 传入程序的环境变量
+args: 传入程序的命令行变量，注意要按照空格切分的字符串数组。比如：-a /path/to/file -c 123 要写成 ["-a", "/path/to/file", "-c", 123]。
+showLog: 展示日志，这个还是很有用的，出现执行错误，可以打开这个配置，可以方便查找问题。
+```
+
 #### 自动生成默认配置
 
 在 debug 面板，点击创建 launch.json 。会在当前工程 .vscode 目录下，生成 launch.json 文件。默认内容如下：
@@ -155,24 +176,6 @@ Delve 是 go 语言的调试工具，允许我们给程序添加断点，查看�
   ]
 }
 ```
-
-#### 参数说明
-
-+ name: 名称，显示在 launch configuration 下拉面板
-+ type: go
-+ request: launch 、attach 两种。
-  + launch 是直接加载启动二进制文件或者执行文件
-  + attach 是挂钩一个正在运行的进程
-+ mode: auto 、debug 、remote 、test 、exec 五种。
-  + auto 是自动识别，判断到底是执行二进制文件，是直接执行文件，还是挂钩到正在运行进程id，
-  + debug 等同于 dlv debug 。program字段要传入目录或者文件，会自动编译，然后启动一个 debug session 。
-  + remote 等同于 dlv connect 。
-  + test 等同于 dlv test 。program字段传入目录（test所在目录），然后启动一个 debug session 。
-  + exec 等同于 dlv exec 。program字段传入已经编译好的可执行文件，然后启动一个 debug session 。
-+ program: 不同 mode 下传入不同的数值。
-+ env: 传入程序的环境变量
-+ args: 传入程序的命令行变量，注意要按照空格切分的字符串数组。比如：-a /path/to/file -c 123 要写成 ["-a", "/path/to/file", "-c", 123]。
-+ showLog: 展示日志，这个还是很有用的，出现执行错误，可以打开这个配置，可以方便查找问题。
 
 #### 增加调试测试用例的配置（dlv test）
 
