@@ -1,11 +1,6 @@
----
-layout: post
-date: 2020-04-14 01:00:00
-author: iainnet
-title: Golang Delve 调试工具和 VSCode 配置
----
+# Golang Delve 调试工具和 VSCode 配置
 
-[[golang]] [[vscode]]
+[[golang]] [[delve]] [[vscode]]
 
 ## 介绍 Delve
 
